@@ -2,7 +2,6 @@ __version__ = "0.1.0"
 __author__ = 'Vlad Romanenko'
 
 
-
 from abc import ABC, abstractmethod
 
 
@@ -16,6 +15,8 @@ class MaterialCreator(ABC):
     def create_material(
             self,
             name: str,
+            nuclides: list,
+            concentrations: list,
             **kwargs
     ):
         pass
@@ -30,6 +31,8 @@ class NumberedMaterialsCreator(ABC):
     def create_materials(
             self,
             name: str,
+            nuclides: list,
+            concentrations: list,
             **kwargs
     ):
         pass
@@ -45,6 +48,8 @@ class CoreMaterialsCreator(ABC):
     def create_materials(
             self,
             name: str,
+            nuclides: list,
+            concentrations: list,
             **kwargs
     ):
         pass

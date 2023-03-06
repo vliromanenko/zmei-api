@@ -21,10 +21,13 @@ class Material:
     :type color: one-dimensional list of integers from 0 to 255
     :param burn: burnable material indicator, defaults to 0
     :type burn: integer, possible values 0 or 1
-    :param is_coolant:
-    :type is_coolant:
-    :param is_fuel:
-    :type is_fuel:
+    :param is_coolant: indicates if material represents water-based coolant, if yes lwtr card will be added to material
+    :type is_coolant: bool
+    :param is_fuel: indicates if material represents fuel
+    :type is_fuel: bool
+    :param nuclides_format: the format of the parameter nuclides, possible values: "Mendeleev_table" or "Serpent".
+        Defaults to "Mendeleev_table".
+    :type nuclides_format: str
     :var nuclides_dict: dictionary with the Serpent representation of nuclides names
     :type nuclides_dict: dictionary, keys are str names of the nuclides ('H-1', 'Gd-152', ..)
         values are str names of nuclides in Serpent ('1001', '8016', ..)
@@ -32,6 +35,8 @@ class Material:
     :type nuclides_concentrations: dictionary, keys are str names of nuclides in Serpent ('1001', '8016', ..)
         values are lists with len==2, value[0] is a float (nuclide concentration),
         value[1] is a str (name of the nuclide)
+    :var lines: Serpent representation of material
+    :type lines: list[str]
     """
 
     instances = []
@@ -169,9 +174,9 @@ class Material:
 
     def write_to_file(self, file) -> None:
         """
-        write_to_file method writes the material in the form of Serpent material input description
-        :param file: the file to write material into, file should be already opened
-        :type file: opened file
+        Method writes the material in the form of Serpent material input description
+        :param file: the file object to write material into
+        :type file: file object
         """
         file.writelines(self.lines)
 

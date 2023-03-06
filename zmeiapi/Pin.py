@@ -37,14 +37,14 @@ class Pin:
         self.name = name
         self.materials = materials
         self.radiuses = radiuses
-        self.check_lenghths()
+        self._check_lenghths()
         self.lines = []
-        self.create_write_lines()
+        self._create_write_lines()
 
     def __str__(self):
         return f'pin p{self.name}'
 
-    def create_write_lines(self) -> None:
+    def _create_write_lines(self) -> None:
         """
         Method that creates lines for the pin in a Serpent format. Called during the initialisation.
         :return: None
@@ -87,7 +87,7 @@ class Pin:
         """
         file.writelines(self.lines)
 
-    def check_lenghths(self) -> None:
+    def _check_lenghths(self) -> None:
         """
         Method checks the lengths of materials and radiuses lists.
 
