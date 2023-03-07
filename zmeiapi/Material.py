@@ -2,6 +2,9 @@ __version__ = '0.3.0'
 __author__ = 'Vlad Romanenko'
 
 
+from Logger import logger
+
+
 class Material:
     """
     Material class provides a material object which contains all the necessary for Serpent information
@@ -106,11 +109,15 @@ class Material:
         if (type(self.nuclides) and type(self.concentrations)) is list:
             pass
         else:
+            logger.error(f"Nuclides and concentrations must have a list type, execution will be stoped")
             raise AttributeError(f"Nuclides and concentrations must have a list type, execution will be stoped")
 
         if len(self.nuclides) == len(self.concentrations):
             pass
         else:
+            logger.error(f"Something went wrong, "
+                                 f"the length of nuclides and concentrations lists must be equal, "
+                                 f"execution will be stoped")
             raise AttributeError(f"Something went wrong, "
                                  f"the length of nuclides and concentrations lists must be equal, "
                                  f"execution will be stoped")
@@ -123,6 +130,7 @@ class Material:
             elif self.nuclides_format == 'Serpent':
                 self.nuclides_concentrations[nuclide] = [self.concentrations[i], nuclide]
             else:
+                logger.error(f"Wrong nuclides format, execution will be stoped")
                 raise AttributeError(f"Wrong nuclides format, execution will be stoped")
             # print(self.nuclides_concentrations[self.nuclides_dict[nuclide]])
         pass

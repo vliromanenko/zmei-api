@@ -1,5 +1,8 @@
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __author__ = "Vlad Romanenko"
+
+
+from Logger import logger
 
 
 class Pin:
@@ -96,4 +99,5 @@ class Pin:
         :rtype: None
         """
         if len(self.materials) - len(self.radiuses) != 1:
-            assert AttributeError("The lenghs of materials and radiuses listsare wrong")
+            logger.error("The lenghs of materials and radiuses lists are wrong")
+            raise AttributeError("The lenghs of materials and radiuses lists are wrong")

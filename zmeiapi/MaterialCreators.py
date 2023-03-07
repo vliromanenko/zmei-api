@@ -3,6 +3,7 @@ __author__ = 'Vlad Romanenko'
 
 
 from abc import ABC, abstractmethod
+from Logger import logger
 
 
 class MaterialCreator(ABC):

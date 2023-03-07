@@ -1,8 +1,9 @@
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = 'Vlad Romanenko'
 
 
 from abc import ABC, abstractmethod
+from Logger import logger
 
 
 class PinCreator(ABC):
@@ -13,7 +14,7 @@ class PinCreator(ABC):
         self.materials = materials
         self.radiuses = radiuses
         if len(self.materials) - len(self.radiuses) != 1:
-            assert AttributeError("The lenghs of materials and radiuses listsare wrong")
+            raise AttributeError("The lenghs of materials and radiuses listsare wrong")
 
     @abstractmethod
     def create_pin(
@@ -31,7 +32,7 @@ class NumberedPinsCreator(ABC):
         self.materials = materials
         self.radiuses = radiuses
         if len(self.materials) - len(self.radiuses) != 1:
-            assert AttributeError("The lenghs of materials and radiuses listsare wrong")
+            raise AttributeError("The lenghs of materials and radiuses listsare wrong")
 
     @abstractmethod
     def create_pins(
@@ -50,7 +51,7 @@ class CorePinsCreator(ABC):
         self.materials = materials
         self.radiuses = radiuses
         if len(self.materials) - len(self.radiuses) != 1:
-            assert AttributeError("The lenghs of materials and radiuses listsare wrong")
+            raise AttributeError("The lenghs of materials and radiuses listsare wrong")
 
     @abstractmethod
     def create_pins(

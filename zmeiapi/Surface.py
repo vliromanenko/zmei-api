@@ -3,6 +3,38 @@ __author__ = "Vlad Romanenko"
 
 
 from abc import ABC, abstractmethod
+from Logger import logger
+
+
+class AbstractSurface(ABC):
+    @abstractmethod
+    def __init__(self, name: str, params: list[float | int]):
+        self.name = name
+        self.params = params
+        self.line = f''
+        self._check_surf_parameters_type()
+        self._check_surf_parameters()
+
+    def __str__(self):
+        return self.line
+
+    def _check_surf_parameters_type(self):
+        for param in self.params:
+            if (type(param) is not float) and (type(param) is not int):
+                logger.error(f'Parameter {param} must be type of float or int')
+                raise AttributeError(f'Parameter {param} must be type of float or int')
+
+    @abstractmethod
+    def _check_surf_parameters(self):
+        pass
+
+    def _create_lines(self, surf_type: str):
+        self.line += f'surf            '
+        self.line += f'{self.name:15} {surf_type:15} '
+        for param in self.params:
+            self.line += f'{param:10} '
+        self.line += f'\n'
+        pass
 
 
 class Surface:
@@ -24,42 +56,33 @@ class Surface:
     def __init__(self):
         self.__class__.instances.append(self)
 
-    class AbstractSurface(ABC):
-        @abstractmethod
-        def __init__(self, name: str, params: list[float | int]):
-            self.name = name
-            self.params = params
-            self.line = f''
-
-            self._check_surf_parameters()
-
-        def __str__(self):
-            return self.line
-
-        @abstractmethod
-        def _check_surf_parameters(self):
-            pass
-
-        def _create_lines(self, surf_type: str):
-            self.line += f'{self.name:15} {surf_type:15} '
-            for param in self.params:
-                self.line += f'{param:10} '
-            self.line += f'\n'
-            pass
-
     class Cylz(AbstractSurface):
         def __init__(self, name: str, params: list[float | int]):
             super().__init__(name, params)
             super()._create_lines('cylz')
 
         def _check_surf_parameters(self):
-            if len(self.params) != 3 or len(self.params) != 5:
-                assert AttributeError('Wrong parameters number, loot at the class description')
+            if len(self.params) != 3 and len(self.params) != 5:
+                raise AttributeError('Wrong parameters number, loot at the class description')
+            pass
+
+    class Cyl(AbstractSurface):
+        def __init__(self, name: str, params: list[float | int]):
+            super().__init__(name, params)
+            super()._create_lines('cylz')
+
+        def _check_surf_parameters(self):
+            if len(self.params) != 3 and len(self.params) != 5:
+                logger.error('Wrong parameters number, loot at the class description')
+                raise AttributeError('Wrong parameters number, loot at the class description')
             pass
 
 
 if __name__ == '__main__':
-    surf = Surface().Cylz('surfc', [1, 3.0, 1.0])
-    surf1 = Surface().Cylz('surfc', [1, 3.0, 1.0])
+    surf = Surface().Cylz('surfc', [2, 3.0, 1.0])
+    surf1 = Surface().Cylz('surfc', [1, 3, 1.0])
+    surf2 = Surface().Cyl('surfc', [1, 3, 1.0])
+
     print(surf)
+    print(surf2)
     print(Surface.instances)
