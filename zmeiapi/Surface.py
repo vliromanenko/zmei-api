@@ -56,6 +56,51 @@ class Surface:
     def __init__(self):
         self.__class__.instances.append(self)
 
+    class Px(AbstractSurface):
+        """
+        Plane perpendicular to x-axis at x = x0
+        :param params: x0, params length must be equal 1
+        :type params: list[float]
+        """
+        def __init__(self, name: str, params: list[float | int]):
+            super().__init__(name, params)
+            super()._create_lines('cylz')
+
+        def _check_surf_parameters(self):
+            if len(self.params) != 1:
+                logger.error('Wrong parameters number, loot at the class description')
+                raise AttributeError('Wrong parameters number, loot at the class description')
+
+    class Py(AbstractSurface):
+        """
+        Plane perpendicular to y-axis at y = y0
+        :param params: y0, params length must be equal 1
+        :type params: list[float]
+        """
+        def __init__(self, name: str, params: list[float | int]):
+            super().__init__(name, params)
+            super()._create_lines('cylz')
+
+        def _check_surf_parameters(self):
+            if len(self.params) != 1:
+                logger.error('Wrong parameters number, loot at the class description')
+                raise AttributeError('Wrong parameters number, loot at the class description')
+
+    class Pz(AbstractSurface):
+        """
+        Plane perpendicular to z-axis at z = z0
+        :param params: z0, params length must be equal 1
+        :type params: list[float]
+        """
+        def __init__(self, name: str, params: list[float | int]):
+            super().__init__(name, params)
+            super()._create_lines('cylz')
+
+        def _check_surf_parameters(self):
+            if len(self.params) != 1:
+                logger.error('Wrong parameters number, loot at the class description')
+                raise AttributeError('Wrong parameters number, loot at the class description')
+
     class Cylz(AbstractSurface):
         def __init__(self, name: str, params: list[float | int]):
             super().__init__(name, params)
