@@ -101,3 +101,9 @@ class Pin:
         if len(self.materials) - len(self.radiuses) != 1:
             logger.error("The lenghs of materials and radiuses lists are wrong")
             raise AttributeError("The lenghs of materials and radiuses lists are wrong")
+
+
+if __name__ == '__main__':
+    pin1 = Pin('1', ['water'], [])
+    pin2 = Pin('2', ['water'], [])
+    Pin.write_instances_to_file('test')
