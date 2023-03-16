@@ -4,7 +4,7 @@ __author__ = 'Vlad Romanenko'
 
 import os
 import glob
-from Logger import logger
+from zmeiapi.io.Logger import logger
 
 
 class BumatMaterialObject:

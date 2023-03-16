@@ -1,3 +1,6 @@
+from zmeiapi.io.Logger import logger
+
+
 class OutReader:
     def __init__(self, out_filename):
         self.out_filename = out_filename

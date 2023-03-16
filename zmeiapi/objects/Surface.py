@@ -3,7 +3,7 @@ __author__ = "Vlad Romanenko"
 
 
 from abc import ABC, abstractmethod
-from Logger import logger
+from zmeiapi.io.Logger import logger
 
 
 class AbstractSurface(ABC):

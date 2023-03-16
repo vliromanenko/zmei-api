@@ -2,7 +2,8 @@ __version__ = '0.3.0'
 __author__ = 'Vlad Romanenko'
 
 
-from Logger import logger
+from zmeiapi.io.Logger import logger
+import pickle as pkl
 
 
 class Material:
@@ -75,7 +76,7 @@ class Material:
         """
 
         # importing pickle module to load all Serpent nuclides' names
-        import pickle as pkl
+        # import pickle as pkl
         self.__class__.instances.append(self)
         self.name = name
         self.nuclides = nuclides
@@ -94,7 +95,7 @@ class Material:
         self._set_temperature_flag()
 
         # loading nuclides dictionary from the pickle file
-        with open('nuclides_dict.pkl', 'rb') as file:
+        with open('../data/nuclides_dict.pkl', 'rb') as file:
             self.nuclides_dict = pkl.load(file)
 
         self._nuclides_and_concentrations_checker()

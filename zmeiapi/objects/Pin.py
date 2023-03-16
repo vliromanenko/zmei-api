@@ -2,7 +2,7 @@ __version__ = "0.1.2"
 __author__ = "Vlad Romanenko"
 
 
-from Logger import logger
+from zmeiapi.io.Logger import logger
 
 
 class Pin:
