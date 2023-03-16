@@ -4,6 +4,7 @@ __author__ = 'Vlad Romanenko'
 
 from zmeiapi.io.Logger import logger
 import pickle as pkl
+from zmeiapi.data.Parameters import NUCLIDES_DICT_PATH
 
 
 class Material:
@@ -95,7 +96,7 @@ class Material:
         self._set_temperature_flag()
 
         # loading nuclides dictionary from the pickle file
-        with open('../data/nuclides_dict.pkl', 'rb') as file:
+        with open(NUCLIDES_DICT_PATH, 'rb') as file:
             self.nuclides_dict = pkl.load(file)
 
         self._nuclides_and_concentrations_checker()

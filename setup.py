@@ -8,12 +8,13 @@ with open('HISTORY.md') as history_file:
 
 setup_args = dict(
     name='zmeiapi',
-    version='0.0.13',
+    version='0.0.16',
     description='Useful tools to work with Zmei calculation code',
     long_description_content_type="text/markdown",
     long_description=README + '\n\n' + HISTORY,
     license='MIT',
     packages=find_packages(),
+    include_package_data = True,
     author='Vladislav Romanenko',
     author_email='vliromanenko@yandex.ru',
     keywords=['zmei-api'],
